@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blogapp-myproject.apps.mycluster1.lab.rdu2.cee.redhat.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,17 +79,10 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#from . import database
+from . import database
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv('DATABASE_NAME'),
-        "USER": os.getenv('DATABASE_USER'),
-        "PASSWORD": os.getenv('DATABASE_PASSWORD'),
-        "HOST": os.getenv('DATABASE_SERVICE_HOST'),
-        "PORT": os.getenv('DATABASE_SERVICE_PORT'),
-    }
+    'default': database.config()
 }
 
 
