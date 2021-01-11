@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blogapp-myproject.apps.mycluster1.lab.rdu2.cee.redhat.com']
+ALLOWED_HOSTS = ['blogapp-myproject.apps.mycluster1.lab.upshift.rdu2.redhat.com']
 
 
 # Application definition
