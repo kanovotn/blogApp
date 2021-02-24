@@ -11,8 +11,8 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body= RichTextField(blank=True, null=True)
     #body = models.TextField()
-    post_date = models.DateField(auto_now_add=True)
-    snippet = models.CharField(max_length=255)
+    post_date = models.DateField(default=datetime.now)
+    snippet = models.CharField(max_length=255, blank=True)
 
 
     def __str__(self):
