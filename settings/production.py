@@ -127,6 +127,20 @@ USE_L10N = True
 
 USE_TZ = True
 
+#CKEditor codesnippet configuration
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+        'extraPlugins': ','.join(
+          [
+              'codesnippet',
+          ]
+
+      ),
+    'codeSnippet_theme': 'github',
+    },    
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
