@@ -1,2 +1,6 @@
 virt/
 .spyproject/
+staticfiles/
+**/migrations
+**/__pycache__/
+*.pyc
