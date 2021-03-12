@@ -5,4 +5,9 @@
 
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 manage.py runserver 0.0.0.0:8080
+
+if [ "$1" == "--local" ]; then
+    python3 manage.py runserver 0.0.0.0:8080 --settings settings.local
+else
+    python3 manage.py runserver 0.0.0.0:8080
+fi

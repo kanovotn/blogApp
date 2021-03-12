@@ -19,7 +19,7 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Run the project locally using the instructions below. By default Django application starts in development mode with
+Run the project locally using the instructions below. By default Django application starts in production mode with
 following settings:
 
 | | Debug mode | Database |
@@ -39,7 +39,7 @@ Prepare the [database](https://docs.djangoproject.com/en/3.1/ref/settings/#datab
 ```sh
 python3 manage.py makemigrations
 python3 manage.py migrate
-python3 manage.py runserver 0.0.0.0:8080
+python3 manage.py runserver 0.0.0.0:8080 --settings settings.local
 ```
 
 Test the application, open http://localhost:8080/ in the browser.
