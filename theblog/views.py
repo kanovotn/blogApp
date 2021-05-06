@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Category
 from .forms import PostForm, EditForm
 from django.urls import reverse_lazy 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -32,6 +32,10 @@ class HomeView(ListView):
         context['posts_list'] = posts_list
         return context
 
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'categories.html', {'cats': cats.title().replace('-', ' '), 'category_posts': category_posts})
+
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
@@ -42,6 +46,12 @@ class AddPostView(LoginRequiredMixin, CreateView):
     template_name = 'add_post.html'
     #fields = '__all__'
     #field = {'title', 'body'}
+    
+class AddCategoryView(CreateView):
+    model = Category
+    template_name = 'add_category.html'
+    fields = '__all__'
+
     
 class UpdatePostView(LoginRequiredMixin, UpdateView):
     model = Post

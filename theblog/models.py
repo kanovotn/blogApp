@@ -5,6 +5,17 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('home')
+
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255)
@@ -13,6 +24,7 @@ class Post(models.Model):
     #body = models.TextField()
     post_date = models.DateField(default=datetime.now)
     snippet = models.CharField(max_length=255, blank=True)
+    category = models.CharField(max_length=255, default='uncategorized')
 
 
     def __str__(self):

@@ -5,7 +5,7 @@
 
 <div class="row">            
     <!-- Post content-->
-    <div class="col-lg-8">
+    <div class="col-md-8">
         <!-- Title-->
         <h1 class="mt-4">{{ post.title }}
         {% if user.is_authenticated  %}
@@ -41,9 +41,48 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
         <hr />
-    </div>
-</div>
+        
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 
-<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </div>
+    
+    <div class="col-md-4">
+          <div class="card my-4">
+              <h5 class="card-header">Categories</h5>
+              <div class="card-body">
+                 <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#">Web Design</a>
+                            </li>
+                            <li>
+                                <a href="#">HTML</a>
+                            </li>
+                            <li>
+                                <a href="#">Freebies</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#">JavaScript</a>
+                            </li>
+                            <li>
+                                <a href="#">CSS</a>
+                            </li>
+                            <li>
+                                <a href="#">Tutorials</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+  </div>
+</div>
 
 {% endblock %}
