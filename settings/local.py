@@ -82,10 +82,21 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-from . import database
+#from . import database
+
+#DATABASES = {
+#    'default': database.config()
+#}
 
 DATABASES = {
-    'default': database.config()
+    "default": {
+        "ENGINE": 'django.db.backends.postgresql_psycopg2',
+        "NAME": os.getenv('DATABASE_NAME'),
+        "USER": os.getenv('DATABASE_USER'),
+        "PASSWORD": os.getenv('DATABASE_PASSWORD'),
+        "HOST": 'localhost',
+        "PORT": '',
+    }
 }
 
 
@@ -152,3 +163,5 @@ LOGOUT_REDIRECT_URL = 'home'
 import django_heroku
 django_heroku.settings(locals())
 
+#import dj_database_url
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

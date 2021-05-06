@@ -13,8 +13,24 @@ class HomeView(ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-post_date']
-    #ordering = ['-id']
+    #ordering = ['-id']    
+    
+    def get_context_data(self, **kwargs):
+        
+        # Get stored posts into the list
+        queryset = Post.objects.all()
+        first_post = queryset.first()
+        posts_list = list(queryset)
 
+        # Remove the first post, it is stored separately
+        posts_list.pop(0)
+        
+        # Call the base implementation first to get the context
+        context = super(HomeView, self).get_context_data(**kwargs)
+        # Create any data and add it to the context
+        context['first_post'] = first_post
+        context['posts_list'] = posts_list
+        return context
 
 class ArticleDetailView(DetailView):
     model = Post
