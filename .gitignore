@@ -1,4 +1,5 @@
 virt/
 .spyproject/
-staticfiles/
+staticfiles/admin
+staticfiles/ckeditor
 .env
