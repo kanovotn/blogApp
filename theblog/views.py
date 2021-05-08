@@ -40,6 +40,19 @@ class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
     
+    def get_context_data(self, **kwargs):
+        queryset = Category.objects.all()
+        category_list = list(queryset)
+        
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        context['category_list'] = category_list
+        category_list_length = len(category_list)
+        if (category_list_length % 2 == 0):
+            context['category_list_half'] = category_list_length//2
+        else:
+            context['category_list_half'] = (category_list_length + 1)//2
+        return context
+    
 class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if category_posts %}
+
+<div class="row">
+    <div class="col-md-8´">
+        <h1 class="my-4">{{ cats }}</h1>
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">       
+{% for post in category_posts %}
+    <div class="col mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="http://placehold.it/363x180" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <small class="text-muted">By <a href="#"><strong> {{ post.author.first_name }} </strong></a> |  {{ post.post_date }}  | {{ post.category }}</small>
+                    <p class="card-text">{{ post.snippet }}</p>
+                    <a href="{% url 'article-detail' post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+
+{% else %}
+
+<div class="row">
+    <div class="col-md-8´">
+        <h2 class="my-4">Sorry, this page does not exists...</h2>
+    </div>
+</div>
+    
+{% endif%}
+
+{% endblock %}

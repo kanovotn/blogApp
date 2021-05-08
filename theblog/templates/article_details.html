@@ -15,14 +15,14 @@
             {% endif %}
         {% endif %}
         </h1>
-        <!-- Author-->
-        <p class="lead">by
-            <a href="#!">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+        <!-- Category-->
+        <p class="lead">
+            <a href="{% url 'category' post.category|slugify %}">{{ post.category|title }}</a>
         </p>
         <hr />
 
-        <!-- Date and time-->
-        <p>Posted on {{ post.post_date }} </p>
+        <!-- Author, Date and time-->
+        <p>by <a href="#!">{{ post.author.first_name }} {{ post.author.last_name }}</a> | Posted on {{ post.post_date }}</p>
         <hr />
         <!-- Preview image-->
         <img class="img-fluid rounded" src="https://via.placeholder.com/900x300" alt="..." />
@@ -53,28 +53,28 @@
                  <div class="row">
                     <div class="col-lg-6">
                         <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                                <a href="#">HTML</a>
-                            </li>
-                            <li>
-                                <a href="#">Freebies</a>
-                            </li>
+                            {% with  category_list_half=category_list_half|stringformat:"s" %}
+                                {% with  category_slice=":"|add:category_list_half %}
+                                    {% for cat in category_list|slice:category_slice %}
+                                        <li>
+                                            <a href="{% url 'category' cat|slugify %}">{{ cat }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endwith %}
                         </ul>
-                    </div>
+                    </div>  
                     <div class="col-lg-6">
                         <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#">JavaScript</a>
-                            </li>
-                            <li>
-                                <a href="#">CSS</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
+                            {% with  category_list_half=category_list_half|stringformat:"s" %}
+                                {% with  category_slice=category_list_half|add:":" %}
+                                    {% for cat in category_list|slice:category_slice %}
+                                        <li>
+                                            <a href="{% url 'category' cat|slugify %}">{{ cat }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endwith %}
                         </ul>
                     </div>
                 </div>
