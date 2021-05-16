@@ -5,9 +5,9 @@
 
 <div class="row">            
     <!-- Post content-->
-    <div class="col-md-8">
+    <div class="col">
         <!-- Title-->
-        <h1 class="mt-4">{{ post.title }}
+        <h1 class="mt-5">{{ post.title }}
         {% if user.is_authenticated  %}
             {% if user.id == post.author.id  %}
                 <a href="{% url 'update-post' post.pk %}" class="btn btn-secondary">Edit</a>  
@@ -43,46 +43,8 @@
         <hr />
         
         <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-
-    </div>
     
-    <div class="col-md-4">
-          <div class="card my-4">
-              <h5 class="card-header">Categories</h5>
-              <div class="card-body">
-                 <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled mb-0">
-                            {% with  category_list_half=category_list_half|stringformat:"s" %}
-                                {% with  category_slice=":"|add:category_list_half %}
-                                    {% for cat in category_list|slice:category_slice %}
-                                        <li>
-                                            <a href="{% url 'category' cat|slugify %}">{{ cat }}</a>
-                                        </li>
-                                    {% endfor %}
-                                {% endwith %}
-                            {% endwith %}
-                        </ul>
-                    </div>  
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled mb-0">
-                            {% with  category_list_half=category_list_half|stringformat:"s" %}
-                                {% with  category_slice=category_list_half|add:":" %}
-                                    {% for cat in category_list|slice:category_slice %}
-                                        <li>
-                                            <a href="{% url 'category' cat|slugify %}">{{ cat }}</a>
-                                        </li>
-                                    {% endfor %}
-                                {% endwith %}
-                            {% endwith %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-      </div>
-  </div>
+    </div>
 </div>
 
 {% endblock %}

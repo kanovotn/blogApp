@@ -23,7 +23,8 @@ class HomeView(ListView):
         posts_list = list(queryset)
 
         # Remove the first post, it is stored separately
-        posts_list.pop(0)
+        if posts_list:
+            posts_list.pop(0)
         
         # Call the base implementation first to get the context
         context = super(HomeView, self).get_context_data(**kwargs)
@@ -52,7 +53,7 @@ class ArticleDetailView(DetailView):
         else:
             context['category_list_half'] = (category_list_length + 1)//2
         return context
-    
+
 class AddPostView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
