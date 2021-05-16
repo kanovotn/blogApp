@@ -13,6 +13,7 @@
     </div>
 </div>
            
+{% if first_post %}
 
 <!-- Blog Posts -->
 <div class="row justify-content-center row-cols-1">  
@@ -25,7 +26,7 @@
                 <small class="text-muted">By <a href="#"><strong> {{ first_post.author.first_name }} </strong></a> |  {{ first_post.post_date }}  
                  | <a href="{% url 'category' first_post.category|slugify %}">{{ first_post.category }}</a></small>
                 <p class="card-text">{{ first_post.snippet }}</p>
-                <a href="{% url 'article-detail' first_post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                <a href="{% url 'article-detail' first_post.slug %}" class="btn btn-primary">Read More &rarr;</a>
             </div>
         <!-- First card end -->
         </div>
@@ -45,13 +46,15 @@
                     <small class="text-muted">By <a href="#"><strong> {{ post.author.first_name }} </strong></a> |  {{ post.post_date }} 
                     | <a href="{% url 'category' first_post.category|slugify %}">{{ post.category }}</a></small>
                     <p class="card-text">{{ post.snippet }}</p>
-                    <a href="{% url 'article-detail' post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'article-detail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
         </div>
     {% endfor%}
 <!-- Row end -->
 </div> 
+
+{% endif %}
        
 
 {% endblock %}

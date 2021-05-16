@@ -19,11 +19,12 @@
                     <h5 class="card-title">{{ post.title }}</h5>
                     <small class="text-muted">By <a href="#"><strong> {{ post.author.first_name }} </strong></a> |  {{ post.post_date }}  | {{ post.category }}</small>
                     <p class="card-text">{{ post.snippet }}</p>
-                    <a href="{% url 'article-detail' post.pk %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'article-detail' post.slug %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
-        </div>
+    </div>
 {% endfor %}
+</div>
 
 {% else %}
 

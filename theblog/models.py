@@ -19,13 +19,17 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     title_tag = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=(255), unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body= RichTextField(blank=True, null=True)
-    #body = models.TextField()
     post_date = models.DateField(default=datetime.now)
     snippet = models.CharField(max_length=255, blank=True)
     category = models.CharField(max_length=255, default='uncategorized')
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
@@ -33,4 +37,5 @@ class Post(models.Model):
     def get_absolute_url(self):
         #return reverse('article-detail', args=(str(self.id)) )
         return reverse('home')
+
 
